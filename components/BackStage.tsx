@@ -25,8 +25,8 @@ const strips = (scale: number = 1) => {
             box: {
                 position: 'absolute',
                 transform: [
-                    {translateY: -150*Math.sin(rotate*30*Math.PI/180)},
-                    {translateX: -150*Math.cos(rotate*30*Math.PI/180)}
+                    {translateY: -110*Math.sin(rotate*30*Math.PI/180)},
+                    {translateX: -110*Math.cos(rotate*30*Math.PI/180)}
                 ]
             }
         }

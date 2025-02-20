@@ -6,7 +6,7 @@ import BackStage from '@/components/BackStage';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-const scale = 75/windowHeight;
+const scale = 100/windowHeight;
 
 export default function HomeScreen() {
 
