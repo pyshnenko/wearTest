@@ -6,7 +6,7 @@ import BackStage from '@/components/BackStage';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-const scale = 60/windowHeight;
+const scale = 75/windowHeight;
 
 export default function HomeScreen() {
 
@@ -52,7 +52,7 @@ export default function HomeScreen() {
   }
 
   return (
-    <Box style={{height: '100%', display:'flex', alignItems: 'center', justifyContent: 'center'}}>
+    <Box style={{height: '100%', display:'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'black'}}>
       <Box style={boxSX}><Image style={styleF(angleS) as ImageProps} source={require('../../assets/images/secondsL.png')} /></Box>
       <Box style={boxSX}><Image style={styleF(angleM) as ImageProps} source={require('../../assets/images/minutesL.png')} /></Box>
       <Box style={boxSX}><Image style={styleF(angleH) as ImageProps} source={require('../../assets/images/hoursL.png')} /></Box>
