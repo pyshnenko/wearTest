@@ -1,74 +1,64 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import { Image, ImageProps, ViewStyle, StyleSheet, Platform } from 'react-native';
+import { useEffect, useState, useRef } from 'react';
+import { Box, Text } from "@react-native-material/core";
+import {Dimensions} from 'react-native';
+import BackStage from '@/components/BackStage';
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
+const scale = 60/windowHeight;
 
 export default function HomeScreen() {
+
+  const [angleS, setAngleS] = useState<number>(0)
+  const [angleM, setAngleM] = useState<number>(0)
+  const [angleH, setAngleH] = useState<number>(0)
+
+  const seckS = useRef(angleS);
+  const seckM = useRef(angleM);
+  const seckH = useRef(angleH);
+
+  useEffect(()=>{
+    console.log('width' + windowWidth)
+    setInterval(()=>{
+      setAngleS((new Date()).getSeconds()*6)
+      setAngleM((new Date()).getMinutes()*6)
+      setAngleH((new Date()).getHours()*30)
+    }, 1000)
+  }, [])
+
+  useEffect(()=>{
+    seckS.current = angleS
+    seckM.current = angleM
+    seckH.current = angleH
+  }, [angleS])
+
+  function styleF<ImageProps>(deg: number) {
+    return {
+      position: 'absolute',
+      transform: [
+        {rotateZ: `${deg}deg`},
+        {scale: scale}
+      ],
+      maxWidth: 300
+    }
+  }
+
+  const boxSX: ViewStyle = {
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    display: 'flex'
+  }
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12'
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <Box style={{height: '100%', display:'flex', alignItems: 'center', justifyContent: 'center'}}>
+      <Box style={boxSX}><Image style={styleF(angleS) as ImageProps} source={require('../../assets/images/secondsL.png')} /></Box>
+      <Box style={boxSX}><Image style={styleF(angleM) as ImageProps} source={require('../../assets/images/minutesL.png')} /></Box>
+      <Box style={boxSX}><Image style={styleF(angleH) as ImageProps} source={require('../../assets/images/hoursL.png')} /></Box>
+      <BackStage style={boxSX} scale={scale} />
+    </Box>
   );
 }
 
-const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-  },
-});
+// style={{transform: [{rotateZ: `${angle}deg`}]}}
