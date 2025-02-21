@@ -53,9 +53,9 @@ export default function HomeScreen() {
 
   return (
     <Box style={{height: '100%', display:'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'black'}}>
-      <Box style={boxSX}><Image style={styleF(angleS) as ImageProps} source={require('../../assets/images/secondsL.png')} /></Box>
-      <Box style={boxSX}><Image style={styleF(angleM) as ImageProps} source={require('../../assets/images/minutesL.png')} /></Box>
-      <Box style={boxSX}><Image style={styleF(angleH) as ImageProps} source={require('../../assets/images/hoursL.png')} /></Box>
+      <Box style={boxSX}><Image style={styleF(angleS) as ImageProps} source={require('../../assets/images/secondsNL.png')} /></Box>
+      <Box style={boxSX}><Image style={styleF(angleM) as ImageProps} source={require('../../assets/images/minutesNL.png')} /></Box>
+      <Box style={boxSX}><Image style={styleF(angleH) as ImageProps} source={require('../../assets/images/hoursNL.png')} /></Box>
       <BackStage style={boxSX} scale={scale} />
     </Box>
   );

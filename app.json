@@ -4,7 +4,7 @@
     "slug": "wearTest",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/spamigorLogo.png",
+    "icon": "./assets/images/spamigorLogoLL.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
@@ -13,25 +13,25 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/spamigorLogo.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/images/spamigorLogoLL.png",
+        "backgroundColor": "#000000"
       },
       "package": "com.spamigor.wearTest"
     },
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/spamigorLogo.png"
+      "favicon": "./assets/images/spamigorLogoLL.png"
     },
     "plugins": [
       "expo-router",
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/spamigorLogo.png",
+          "image": "./assets/images/spamigorLogoLL.png",
           "imageWidth": 200,
           "resizeMode": "contain",
-          "backgroundColor": "#ffffff"
+          "backgroundColor": "#000000"
         }
       ]
     ],

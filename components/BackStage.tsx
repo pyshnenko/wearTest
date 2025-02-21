@@ -36,10 +36,13 @@ const strips = (scale: number = 1) => {
     return buf
 }
 
-function StripsEl({style}: {style: {img: ImageProps, box: ViewStyle}}) {
+function StripsEl({style, i}: {style: {img: ImageProps, box: ViewStyle}, i: number}) {
     return (
         <Box style={style.box}>
-            <Image style={style.img} source={require('@/assets/images/spamigorLogoL.png')} />
+            {i===3 ? 
+                <Image style={style.img} source={require('@/assets/images/spamigorLogoLongP.png')} /> :
+                <Image style={style.img} source={require('@/assets/images/spamigorLogoOL.png')} />
+            }
         </Box>
     )
 }
@@ -52,7 +55,7 @@ export default function BackStage (props: Props) {
         <Box style={{...props.style, position: 'absolute'}}>
             <Box style={{alignItems: 'center', justifyContent: 'center', position:'absolute'}}>
                 {face.map((item: {img: ImageProps, box: ViewStyle}, index: number)=>{
-                    return (<StripsEl key={index} style={item as {img: ImageProps, box: ViewStyle}} />)}
+                    return (<StripsEl i={index} key={index} style={item as {img: ImageProps, box: ViewStyle}} />)}
                 )}
             </Box>
         </Box>
